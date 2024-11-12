@@ -1,17 +1,32 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { ScrollView, StyleSheet, Dimensions,Text, View } from 'react-native';
+import * as Location from 'expo-location';
 
 const {width : SCREEN_WIDTH} = Dimensions.get("window");
 
 export default function App() {
+  const [location, setLocation] = useState();
+  const [ok, setOk] = useState(true);
+  const ask = async () => {
+    await Location
+  }
+  useEffect(() => {
+    ask();
+  })
   return (
     <View style={styles.container}>
       <StatusBar style='dark' />
       <View style={styles.city}>
         <Text style={styles.cityName}>Seoul</Text>
       </View>
-      <ScrollView contentContainerStyle={styles.weather} horizontal pagingEnabled showsHorizontalScrollIndicator>
+      <ScrollView
+          contentContainerStyle={styles.weather}
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+          // indicatorStyle={"white"}
+      >
         <View style={styles.day}>
           <Text style={styles.temp}>27</Text>
           <Text style={styles.description}>Sunny</Text>
